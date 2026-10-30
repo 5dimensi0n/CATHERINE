@@ -9,10 +9,18 @@
     <header>
         <h2>MEOWNSTER</h2>
     </header>
-    <canvas id="body" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 0;"></canvas>
-    <canvas id="Tops" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 1;"></canvas>
-    <button onclick="DrawTop()" style="z-index: 2;">->></button>
-    <p id="demo"></p>
+    <div>
+        <canvas id="body" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 0;"></canvas>
+        <canvas id="Tops" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 3;"></canvas>
+        <canvas id="Makeup" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 1;"></canvas>
+        <canvas id="Bottoms" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 2;"></canvas>
+    </div>
+    <div width="100%">
+        <button onclick="DrawTop()" style="z-index: 2;">Tops</button>
+        <button onclick="DrawMake()" style="z-index: 2;">Looks</button>
+        <button onclick="DrawBottom()" style="z-index: 2;">Bottoms</button>
+        <p id="demo"></p>
+    </div>
 </body>
 
 
@@ -21,37 +29,88 @@
     
 const canvas = document.getElementById('body');
 const Topcan = document.getElementById('Tops');
+const MakeupCan = document.getElementById('Makeup')
+const BotCan = document.getElementById('Bottoms')
 
 const TopCtx = Topcan.getContext('2d');
 const ctx = canvas.getContext('2d');
+const MakeupCtx = MakeupCan.getContext('2d');
+const BottomCtx = BotCan.getContext('2d');
 
-let Topindex = 1;
+let Topindex = 0;
+let MakeupIndex = 0;
+let BottomIndex = 0;
 
 const img = new Image();
 img.src = 'sprites/Monster.png';
 
 
 let Topimg = new Image();
+let makeupImg = new Image();
+let BottomImg = new Image();
+
+
+function DrawMake() {
+    if (MakeupIndex == 1) {
+        makeupImg.src = "sprites/makeup1.png";
+        MakeupIndex++;
+    } else if (MakeupIndex == 2) {
+        makeupImg.src = "sprites/makeup2.png";
+        MakeupIndex++;
+    } else if (MakeupIndex == 3) {
+        makeupImg.src = "sprites/makeup3.png";
+        MakeupIndex++;
+    } else {
+        makeupImg.src = "";
+        MakeupIndex = 0;
+        MakeupIndex++;
+    }
+    document.getElementById("demo").innerHTML = MakeupIndex;
+    MakeupCtx.clearRect(0, 0, 1000, 1000);
+    MakeupCtx.drawImage(makeupImg,0,0, 1000,1000);
+}
 
 function DrawTop() {
-    if (Topindex == 0) {
+    if (Topindex == 1) {
         Topimg.src = "sprites/Bikini.png";
-    } else if (Topindex == 1) {
-        Topimg.src = "sprites/Shirt.png";
+        Topindex++;
     } else if (Topindex == 2) {
-        Topimg.src = "sprites/Bikini.png";
+        Topimg.src = "sprites/top2.png";
+        Topindex++;
+    } else if (Topindex == 3) {
+        Topimg.src = "sprites/top1.png";
+        Topindex++;
+    }else if (Topindex == 4) {
+        Topimg.src = "sprites/top3.png";
+        Topindex++;
     } else {
-        Topimg.src = "sprites/Shirt.png";
+        Topimg.src = "";
         Topindex = 0;
+        Topindex++;
     }
-    Topindex++;
     document.getElementById("demo").innerHTML = Topindex;
-    TopCtx.clearRect(0, 0, canvas.width, canvas.height);
+    TopCtx.clearRect(0, 0, 1000, 1000);
     TopCtx.drawImage(Topimg,0,0, 1000,1000);
+}
+
+function DrawBottom() {
+    if (BottomIndex == 1) {
+        BottomImg.src = "sprites/bottom1.png";
+        BottomIndex++;
+    } else if (BottomIndex == 2) {
+        BottomImg.src = "sprites/top2.png";
+        BottomIndex++;
+    } else {
+        BottomImg.src = "";
+        BottomIndex = 0;
+        BottomIndex++;
+    }
+    document.getElementById("demo").innerHTML = BottomIndex;
+    BottomCtx.clearRect(0, 0, 1000, 1000);
+    BottomCtx.drawImage(BottomImg,0,0, 1000,1000);
 }
 img.onload = function() {
     ctx.drawImage(img,0,0, 1000, 1000);
-    TopCtx.drawImage(Topimg,0,0, 1000,1000);
 }
 
 </script>
