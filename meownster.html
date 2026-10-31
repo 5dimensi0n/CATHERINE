@@ -6,23 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        <h2>MEOWNSTER</h2>
-    </header>
-    <div>
-        <canvas id="body" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 0;"></canvas>
-        <canvas id="Tops" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 3;"></canvas>
-        <canvas id="Makeup" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 1;"></canvas>
-        <canvas id="Bottoms" width="1000px" height="1000px" style="border:1px solid #000;position: absolute; left: 0; top: 200px; z-index: 2;"></canvas>
-    </div>
-    <div width="100%">
-        <button onclick="DrawTop()" style="z-index: 2;">Tops</button>
-        <button onclick="DrawMake()" style="z-index: 2;">Looks</button>
-        <button onclick="DrawBottom()" style="z-index: 2;">Bottoms</button>
-        <p id="demo"></p>
+    <div id="main">
+        <header>
+            <center><h2>MEOWNSTER</h2></center>
+        </header>
+        <div>
+            <canvas class="canvases" id="body" width="800px" height="800px" style="z-index: 0;"></canvas>
+            <canvas class="canvases" id="Tops" width="800px" height="800px" style="z-index: 3;"></canvas>
+            <canvas class="canvases" id="Makeup" width="800px" height="800px" style="z-index: 1;"></canvas>
+            <canvas class="canvases" id="Bottoms" width="800px" height="800px" style="z-index: 2;"></canvas>
+            <canvas class="canvases" id="Accessories" width="800px" height="800px" style="z-index: 4;"></canvas>
+        </div>
+        <center>
+            <button onclick="DrawTop()" >Tops</button>
+            <button onclick="DrawMake()" >Looks</button>
+            <button onclick="DrawBottom()">Bottoms</button>
+            <button onclick="DrawAcc()">Accessories</button>
+        </center>
+        <img src="https://64.media.tumblr.com/e97fade66c788f48664fe5ab64d7fe9d/579e5316ffbe1944-e6/s400x600/39de9da8f41a28acc3a3d66bf1042b6faefbd485.gifv" width="100%">
     </div>
 </body>
+<style>
 
+    body {
+        background-image: url('https://cdn.hackclub.com/01a19215-4731-7ed4-8ae3-ff26063b2284/background.png');
+    }
+    #main {
+    position: relative;
+    margin: auto;
+    width: 800px;
+    border: 3px solid #000;
+    height:120vh;
+    padding: 10px;
+    align-items: center;  
+    justify-content: center;
+    margin-inline: auto; 
+    background-color: #FFF;
+    }
+    .canvases {
+        margin:auto;
+        border:1px solid #000;
+        position: absolute;
+        left: 0px;
+        top: 200px;
+    }
+</style>
 
 
 <script type="text/javascript">
@@ -31,15 +59,21 @@ const canvas = document.getElementById('body');
 const Topcan = document.getElementById('Tops');
 const MakeupCan = document.getElementById('Makeup')
 const BotCan = document.getElementById('Bottoms')
+const AccCan = document.getElementById('Accessories')
+
+
+const canvasSize = 800
 
 const TopCtx = Topcan.getContext('2d');
 const ctx = canvas.getContext('2d');
 const MakeupCtx = MakeupCan.getContext('2d');
 const BottomCtx = BotCan.getContext('2d');
+const AccCtx = AccCan.getContext('2d');
 
 let Topindex = 0;
 let MakeupIndex = 0;
 let BottomIndex = 0;
+let AccIndex = 0
 
 const img = new Image();
 img.src = 'sprites/Monster.png';
@@ -48,69 +82,82 @@ img.src = 'sprites/Monster.png';
 let Topimg = new Image();
 let makeupImg = new Image();
 let BottomImg = new Image();
+let AccImg = new Image();
 
 
 function DrawMake() {
     if (MakeupIndex == 1) {
-        makeupImg.src = "sprites/makeup1.png";
+        makeupImg.src = "https://cdn.hackclub.com/01a19215-d91f-7a97-b9fe-2b370072dc7c/makeup1.png";
         MakeupIndex++;
     } else if (MakeupIndex == 2) {
-        makeupImg.src = "sprites/makeup2.png";
+        makeupImg.src = "https://cdn.hackclub.com/01a19215-d9cb-7d7a-8f0e-13f29d23c49f/makeup2.png";
         MakeupIndex++;
     } else if (MakeupIndex == 3) {
-        makeupImg.src = "sprites/makeup3.png";
+        makeupImg.src = "https://cdn.hackclub.com/01a19215-da83-7337-82c5-d001a1741069/makeup3.png";
         MakeupIndex++;
     } else {
         makeupImg.src = "";
         MakeupIndex = 0;
         MakeupIndex++;
     }
-    document.getElementById("demo").innerHTML = MakeupIndex;
-    MakeupCtx.clearRect(0, 0, 1000, 1000);
-    MakeupCtx.drawImage(makeupImg,0,0, 1000,1000);
+    MakeupCtx.clearRect(0, 0, canvasSize, canvasSize);
+    MakeupCtx.drawImage(makeupImg,0,0, canvasSize,canvasSize);
 }
 
 function DrawTop() {
     if (Topindex == 1) {
-        Topimg.src = "sprites/Bikini.png";
+        Topimg.src = "https://cdn.hackclub.com/01a19215-f074-78b7-ab91-ba48dda32bf9/top1.png";
         Topindex++;
     } else if (Topindex == 2) {
-        Topimg.src = "sprites/top2.png";
+        Topimg.src = "https://cdn.hackclub.com/01a19216-ee13-7b57-9b35-6b184cc3c86f/top2.png";
         Topindex++;
     } else if (Topindex == 3) {
-        Topimg.src = "sprites/top1.png";
+        Topimg.src = "https://cdn.hackclub.com/01a19216-04f5-75fa-ada7-203fba72d7ee/top3.png";
         Topindex++;
     }else if (Topindex == 4) {
-        Topimg.src = "sprites/top3.png";
+        Topimg.src = "https://cdn.hackclub.com/01a19215-d63e-7149-bbc3-71d7b4a9db92/Bikini.png";
         Topindex++;
     } else {
         Topimg.src = "";
         Topindex = 0;
         Topindex++;
     }
-    document.getElementById("demo").innerHTML = Topindex;
-    TopCtx.clearRect(0, 0, 1000, 1000);
-    TopCtx.drawImage(Topimg,0,0, 1000,1000);
+    TopCtx.clearRect(0, 0, canvasSize, canvasSize);
+    TopCtx.drawImage(Topimg,0,0, canvasSize,canvasSize);
 }
 
 function DrawBottom() {
     if (BottomIndex == 1) {
-        BottomImg.src = "sprites/bottom1.png";
+        BottomImg.src = "https://cdn.hackclub.com/01a19215-d6eb-73d7-a74d-9d635a55b75a/bottom1.png";
         BottomIndex++;
     } else if (BottomIndex == 2) {
-        BottomImg.src = "sprites/top2.png";
+        BottomImg.src = "https://cdn.hackclub.com/01a19215-d817-70fd-858b-740fed98d326/bottom2.png";
         BottomIndex++;
     } else {
         BottomImg.src = "";
         BottomIndex = 0;
         BottomIndex++;
     }
-    document.getElementById("demo").innerHTML = BottomIndex;
-    BottomCtx.clearRect(0, 0, 1000, 1000);
-    BottomCtx.drawImage(BottomImg,0,0, 1000,1000);
+    BottomCtx.clearRect(0, 0, canvasSize, canvasSize);
+    BottomCtx.drawImage(BottomImg,0,0, canvasSize,canvasSize);
+}
+function DrawAcc(){
+    if (AccIndex == 1){
+        AccImg.src = "https://cdn.hackclub.com/01a19225-0cde-7da7-83e9-91998c8d5ba3/Bow1.png"
+        AccIndex++;
+    } else if (AccIndex == 2) {
+        AccImg.src = "https://cdn.hackclub.com/01a19226-8585-7f8f-956b-291de9d50833/Bow2.png";
+        AccIndex++;
+    } else {
+        AccImg.src = "";
+        AccIndex = 0;
+        AccIndex++;
+    }
+    AccCtx.clearRect(0, 0, canvasSize, canvasSize);
+    AccCtx.drawImage(AccImg,0,0,canvasSize,canvasSize)
 }
 img.onload = function() {
-    ctx.drawImage(img,0,0, 1000, 1000);
+    ctx.drawImage(img,0,0, canvasSize, canvasSize);
 }
 
 </script>
