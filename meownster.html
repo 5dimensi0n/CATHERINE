@@ -7,8 +7,8 @@
 </head>
 <body>
     <div id="main">
-        <header>
-            <center><h2>MEOWNSTER</h2></center>
+        <header style="font-family: header;">
+            <center><h2>CATHERINE</h2></center>
         </header>
         <div>
             <canvas class="canvases" id="body" width="800px" height="800px" style="z-index: 0;"></canvas>
@@ -23,10 +23,14 @@
             <button onclick="DrawBottom()">Bottoms</button>
             <button onclick="DrawAcc()">Accessories</button>
         </center>
-        <img src="https://64.media.tumblr.com/e97fade66c788f48664fe5ab64d7fe9d/579e5316ffbe1944-e6/s400x600/39de9da8f41a28acc3a3d66bf1042b6faefbd485.gifv" width="100%">
+        <img src="https://64.media.tumblr.com/34a9e597dd12f3e73bc5ee967693a2a3/579e5316ffbe1944-c0/s1280x1920/24d09342f58c5f63ffb7006e9949a8465cc542ba.pnj" width="100%">
     </div>
 </body>
 <style>
+    @font-face {
+        font-family: header;
+        src: url('https://cdn.hackclub.com/01a19240-bf0f-730e-bbbc-d4a2d5b18131/Code462WPink-Regular.ttf');
+    }
 
     body {
         background-image: url('https://cdn.hackclub.com/01a19215-4731-7ed4-8ae3-ff26063b2284/background.png');
@@ -49,6 +53,10 @@
         position: absolute;
         left: 10px;
         top: 200px;
+    }
+    button{
+        padding:5px 5px 5px 30px; 
+        background:url('https://64.media.tumblr.com/4a8c90d47a0c8b2c271e893f245aabb3/30f7ff9b6708cdf7-08/s75x75_c1/231a594ba4685cb25d3cf24caa442dfb2be26d1c.gifv') no-repeat 5px center;
     }
 </style>
 
